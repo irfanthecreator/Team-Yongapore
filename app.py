@@ -50,11 +50,12 @@ def infer_on_video(input_file, confidence_threshold=0.5, device='CPU'):
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-    # Save the processed frames into a new video file
+    # Ensure that the output video has the correct codec and frame rate
     output_file = "output_video.mp4"
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    out = cv2.VideoWriter(output_file, fourcc, 30.0, (width, height))
+    out = cv2.VideoWriter(output_file, fourcc, 25.0, (width, height))  # 25 FPS
 
+    # Process video frames and write the output
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
