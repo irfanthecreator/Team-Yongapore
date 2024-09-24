@@ -7,7 +7,7 @@ import numpy as np
 VEHICLE_DETECTION_MODEL = "models/vehicle-detection-adas-0002.xml"
 
 def preprocess(frame, net_input_shape):
-    """Resize, transpose, and prepare the input frame for the model inference."""
+    """Resize, transpose, and prepare the input frame for model inference."""
     p_frame = cv2.resize(frame, (net_input_shape[3], net_input_shape[2]))
     p_frame = p_frame.transpose((2, 0, 1))
     p_frame = p_frame.reshape(1, *p_frame.shape)
@@ -98,6 +98,22 @@ def infer_on_video(input_file, confidence_threshold=0.5, device='CPU'):
 # Streamlit UI
 st.title("AI Vehicle Detection with OpenVINO")
 st.sidebar.title("Settings")
+
+# Problem Scoping (4W's)
+with st.expander("Project Description: Problem Scoping (4W's)"):
+    st.markdown("""
+    **Who (누구):**  
+    The users facing this problem are drivers who aim to enhance safety while navigating roadways.
+    
+    **What (무엇):**  
+    Drivers face insufficient awareness of their surroundings, which leads to difficulties in identifying potential hazards, increasing the risk of accidents.
+
+    **Where (어디):**  
+    This issue arises in various driving environments such as urban areas, highways, intersections, and parking lots, where vehicle and pedestrian interactions create complex situations.
+
+    **Why (왜):**  
+    Solving this problem improves drivers' situational awareness, reduces accident rates, and enhances overall road safety.
+    """)
 
 # Upload video
 input_video = st.sidebar.file_uploader("Upload a video", type=["mp4", "avi"])
