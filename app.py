@@ -106,7 +106,7 @@ with st.expander("Project Description: Problem Scoping (4W's)"):
     The users facing this problem are drivers who aim to enhance safety while navigating roadways.
     
     **What (무엇):**  
-    Drivers face insufficient awareness of their surroundings, which leads to difficulties in identifying potential hazards, increasing the risk of accidents.
+    While drivers are generally aware of their surroundings, they can encounter situations where it is difficult to fully perceive potential hazards—especially in complex or busy environments. This can increase the risk of accidents, as certain dangers might not be easily noticeable. 
 
     **Where (어디):**  
     This issue arises in various driving environments such as urban areas, highways, intersections, and parking lots, where vehicle and pedestrian interactions create complex situations.
