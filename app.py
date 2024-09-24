@@ -49,8 +49,11 @@ def infer_on_video(input_file, confidence_threshold=0.5, device='CPU'):
     cap = cv2.VideoCapture(input_file)
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    
-    stframe = st.empty()
+
+    # Save the processed frames into a new video file
+    output_file = "output_video.mp4"
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+    out = cv2.VideoWriter(output_file, fourcc, 30.0, (width, height))
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -62,18 +65,32 @@ def infer_on_video(input_file, confidence_threshold=0.5, device='CPU'):
         output = results[compiled_model.output(0)]
         
         frame = draw_boxes(frame, output, width, height, confidence_threshold)
-        stframe.image(frame, channels="BGR", use_column_width=True)
+        
+        # Write the processed frame to the output video
+        out.write(frame)
     
     cap.release()
+    out.release()
+
+    return output_file
 
 # Streamlit UI
 st.title("AI Video Inference using OpenVINO")
+
 input_video = st.file_uploader("Upload a video", type=["mp4", "avi"])
 confidence_threshold = st.slider("Confidence Threshold", 0.1, 1.0, 0.5)
 device = st.selectbox("Select Device", ["CPU", "GPU"], index=0)
 
 if st.button("Run Inference") and input_video:
     with st.spinner("Processing..."):
+        # Save uploaded video locally
         with open("uploaded_video.mp4", "wb") as f:
             f.write(input_video.read())
-        infer_on_video("uploaded_video.mp4", confidence_threshold, device)
+        
+        # Run inference on the uploaded video
+        output_video = infer_on_video("uploaded_video.mp4", confidence_threshold, device)
+
+        # Display the processed video in Streamlit
+        video_file = open(output_video, "rb")
+        video_bytes = video_file.read()
+        st.video(video_bytes)
