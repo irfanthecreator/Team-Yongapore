@@ -52,19 +52,24 @@ def infer_on_video(input_file, confidence_threshold=0.5, device='CPU'):
     
     stframe = st.empty()
 
+    frame_skip = 5  # Only process every 5th frame
+    frame_counter = 0
+
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             break
-        
-        p_frame = preprocess(frame, input_layer.shape)
-        results = compiled_model([p_frame])
-        output = results[compiled_model.output(0)]
-        
-        frame = draw_boxes(frame, output, width, height, confidence_threshold)
-        stframe.image(frame, channels="BGR", use_column_width=True)
     
-    cap.release()
+        # Skip frames to improve performance
+        if frame_counter % frame_skip == 0:
+            p_frame = preprocess(frame, input_layer.shape)
+            results = compiled_model([p_frame])
+            output = results[compiled_model.output(0)]
+            frame = draw_boxes(frame, output, width, height, confidence_threshold)
+
+        stframe.image(frame, channels="BGR", use_column_width=True)
+        frame_counter += 1
+
 
 # Streamlit UI
 st.title("AI Video Inference using OpenVINO")
