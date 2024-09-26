@@ -15,19 +15,24 @@ st.markdown("**Created by Team Yongapore**")
 with st.expander("🚗 Project Overview: Problem Scoping (4W's)"):
     st.subheader("Who (누구):")
     st.markdown("**Drivers** seeking enhanced safety while navigating roadways.")
+    st.markdown("**도로를 주행하는 동안 안전성을 높이고자 하는 운전자들.**")
     
     st.subheader("What (무엇):")
     st.markdown("Drivers face insufficient awareness of surroundings, leading to difficulties in identifying potential hazards and an increased risk of accidents.")
+    st.markdown("**운전자들은 주변 상황에 대한 인식 부족으로 잠재적인 위험을 식별하는 데 어려움을 겪고, 사고 위험이 증가합니다.**")
 
     st.subheader("Where (어디):")
     st.markdown("This issue arises in **urban areas, highways, intersections, and parking lots**, where interactions between vehicles and pedestrians create complex driving situations.")
+    st.markdown("**이 문제는 도시 지역, 고속도로, 교차로, 주차장 등에서 발생하며, 차량과 보행자 간의 상호작용으로 복잡한 운전 상황을 초래합니다.**")
 
     st.subheader("Why (왜):")
     st.markdown("Solving this issue will improve drivers' situational awareness, **reduce accident rates**, and enhance overall **road safety**.")
+    st.markdown("**이 문제를 해결하면 운전자의 상황 인식이 향상되고, 사고율이 감소하며, 전반적인 도로 안전이 강화됩니다.**")
 
 # Purpose
 st.markdown("## Purpose: Enhancing Road Safety for Drivers 🛣️")
 st.markdown("This project helps drivers by using AI to detect vehicles and measure their proximity, alerting drivers when cars are too close to each other for safer driving.")
+st.markdown("**이 프로젝트는 AI를 활용하여 차량을 감지하고 근접성을 측정함으로써 차량 간 거리가 너무 가까워지면 운전자에게 경고하여 더 안전한 주행을 돕습니다.**")
 
 def preprocess(frame, net_input_shape):
     """Resize, transpose, and prepare the input frame for model inference."""
