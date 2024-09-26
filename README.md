@@ -3,8 +3,9 @@ Vehicle Detection using OPENVINO
 
 Link: https://team-yongapore.streamlit.app/
 
-## Description
-This project is a vehicle detection application for drivers who hope to enhance safety when navigating roadways.
+## Description:
+Enhancing Road Safety for Drivers 🛣️
+This project helps drivers by using AI to detect vehicles and measure their proximity, alerting drivers when cars are too close to each other for safer driving.
 
 ### Who (누구): 
 The users who are facing this problem are drivers who hope to enhance safety when navigating roadways.
